@@ -6,7 +6,7 @@ struct Block {
     struct Block *next;
 };
 
-struct Block *freeList = NULL;
+static struct Block *freeList = NULL;
 
 inline void *oalloc(size_t size) {
     struct Block *block;
