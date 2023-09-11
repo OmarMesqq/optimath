@@ -1,4 +1,5 @@
 #include <unistd.h> // for sbrk()
+#include "olloc.h"
 
 // Memory block header
 struct Block {
@@ -36,14 +37,14 @@ inline void ofree(void *ptr) {
 }
 
 int main() {
-    int *arr = (int *)oalloc(sizeof(int) * 10);
-    if (arr == NULL) {
+    int *array_ptr = (int *)oalloc(sizeof(int) * 10);
+    if (array_ptr == NULL) {
         return 1;
     }
 
-    arr[0] = 42; // use allocated memory
+    array_ptr[0] = 42; // use allocated memory
 
-    ofree(arr);
+    ofree(array_ptr);
 
     return 0;
 }
