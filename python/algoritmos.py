@@ -32,11 +32,8 @@ b = 4
 res_rec, rec_depth = rec(a, b)
 res_ite = ite(a,b)
 
-ite_callable = partial(ite, a, b)
-rec_callable = partial(rec, a, b)
-
-tempo_ite = timeit.timeit(ite_callable, number=1)
-tempo_rec = timeit.timeit(rec_callable, number=1)
+tempo_ite = timeit.timeit(lambda: ite(a, b), number=1)
+tempo_rec = timeit.timeit(lambda: rec(a, b), number=1)
 
 print(f"Resultado iterativo de {a}x{b}: {res_ite}")
 print(f"Resultado recursivo de {a}x{b}: {res_rec}")
