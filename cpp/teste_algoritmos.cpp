@@ -1,6 +1,6 @@
 #define CONFIG_CATCH_MAIN
 
-#include "include/catch2.cpp"
+#include <catch2/catch_test_macros.hpp>
 #include "algoritmos.hpp"
 
 TEST_CASE("Deve fazer multiplicação por soma recursiva") {
