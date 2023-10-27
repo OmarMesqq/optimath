@@ -1,7 +1,7 @@
 #define CONFIG_CATCH_MAIN
 
 #include <catch2/catch_test_macros.hpp>
-#include "algoritmos.hpp"
+#include "algorithm.hpp"
 
 TEST_CASE("Deve fazer multiplicação por soma recursiva") {
 	REQUIRE(rec(4,0) == 0);
