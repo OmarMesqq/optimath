@@ -2,7 +2,7 @@
 extern "C" { 
 #endif
 
-void *olloc(size_t size);
+void *oalloc(size_t size);
 void ofree(void *ptr);
 
 #ifdef __cplusplus 
