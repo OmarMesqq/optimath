@@ -1,5 +1,8 @@
 #include <unistd.h> // for sbrk()
 #include "olloc.h"
+/*
+TODO: implement allocation with assembly
+*/
 
 // Memory block header
 struct Block {
@@ -48,7 +51,3 @@ int main() {
 
     return 0;
 }
-
-/*
-TODO: implement allocation with assembly
-*/
