@@ -4,9 +4,7 @@
 #include <stdexcept>
 #include <memory>
 
-// Define a custom namespace
-namespace MyNamespace {
-    // Define a class with inheritance
+namespace Optimath {
     class Shape {
     public:
         virtual double area() const = 0;
@@ -31,15 +29,15 @@ namespace MyNamespace {
         return (a > b) ? a : b;
     }
 
-    // Operator overloading for custom type
+    // Operator overloading for complex numbers
     class Complex {
     public:
         double real, imag;
 
         Complex(double r, double i) : real(r), imag(i) {}
 
-        Complex operator+(const Complex& other) {
-            return Complex(real + other.real, imag + other.imag);
+        Complex operator+(const Complex& anotherComplex) {
+            return Complex(real + anotherComplex.real, imag + anotherComplex.imag);
         }
     };
 
@@ -53,8 +51,7 @@ namespace MyNamespace {
 }
 
 int main() {
-    // Use the custom namespace
-    using namespace MyNamespace;
+    using namespace Optimath;
 
     // Initialize a vector with STL
     std::vector<int> numbers = {5, 2, 8, 1, 3};
