@@ -1,11 +1,13 @@
 #include <iostream>
 #include <cstring>
 #include "allocator/olloc.h"
-
-class CustomVector {
+/*
+TODO: use memory allocation functions available in C instead of new/delete
+*/
+class OptiVector {
 public:
-    CustomVector() : data_(nullptr), size_(0), capacity_(0) {}
-    ~CustomVector() { delete[] data_; }
+    OptiVector() : data_(nullptr), size_(0), capacity_(0) {}
+    ~OptiVector() { delete[] data_; }
 
     void push_back(int value) {
         if (size_ == capacity_) {
@@ -42,26 +44,22 @@ private:
     size_t capacity_;
 };
 
-extern "C" CustomVector* create_vector() {
-    return new CustomVector();
+extern "C" OptiVector* create_vector() {
+    return new OptiVector();
 }
 
-extern "C" void push_back(CustomVector* vec, int value) {
+extern "C" void push_back(OptiVector* vec, int value) {
     vec->push_back(value);
 }
 
-extern "C" int at(CustomVector* vec, size_t index) {
+extern "C" int at(OptiVector* vec, size_t index) {
     return vec->at(index);
 }
 
-extern "C" void swap_elements(CustomVector* vec, size_t i, size_t j) {
+extern "C" void swap_elements(OptiVector* vec, size_t i, size_t j) {
     vec->swap_elements(i, j);
 }
 
-extern "C" void delete_vector(CustomVector* vec) {
+extern "C" void delete_vector(OptiVector* vec) {
     delete vec;
 }
-
-/*
-TODO: use memory allocation functions available in C instead of new/delete
-*/
