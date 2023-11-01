@@ -25,6 +25,22 @@ def fib(n):
     if n <= 1: return n;
     return fib(n - 1) + fib(n - 2)
 
+def sumSigma(k):
+    summ = 0
+    n = 0
+    while n <= k:
+        summ += 5*n
+    return summ
+
+
+def productPi(k):
+    prod = 1
+    n =1
+    while n <= k:
+        prod *= 4*n**2
+    return prod
+
+
 
 a = 4
 b = 4 
