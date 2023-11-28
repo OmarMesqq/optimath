@@ -30,6 +30,11 @@ public:
         );
     }
 
+    void operator+(const OptiVector& a, const OptiVector&b) {
+	    // Adds the vectors/matrices
+
+    }
+
 private:
     void resize(size_t new_capacity) {
         int* new_data = new int[new_capacity];
