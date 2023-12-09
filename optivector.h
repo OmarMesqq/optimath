@@ -23,11 +23,7 @@ public:
 
     void swap_elements(size_t i, size_t j) {
         if (i >= size_ || j >= size_) throw std::out_of_range("Index out of range");
-        __asm__ (
-            "xchg %[x], %[y]"
-            : [x] "=r" (data_[i]), [y] "=r" (data_[j])
-            : "0" (data_[i]), "1" (data_[j])
-        );
+        // implement
     }
 
 private:
