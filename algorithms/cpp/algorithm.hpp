@@ -8,11 +8,11 @@
  * @param b the multiplicand.
  * @return the product of a and b.
  */
-int rec(const int& a, int b) {
+int recursive_multiplication(const int& a, int b) {
 	if (b == 0) {return 0;}
 	if (b == 1) {return a;}
 	b--; 
-	return a + rec(a,b);
+	return a + recursive_multiplication(a,b);
 }
 
 /**
@@ -24,7 +24,7 @@ int rec(const int& a, int b) {
  * @param n the position of the Fibonacci number to compute.
  * @return the Fibonacci number at position 'n'.
  */
-int fib(int n) {
+int recursive_fibonacci(int n) {
 	if (n <= 1) {return n;}
-	return fib(n-1) + fib(n-2);
+	return recursive_fibonacci(n-1) + recursive_fibonacci(n-2);
 }
