@@ -5,10 +5,17 @@ project(optimath)
 add_subdirectory(Catch2)
 
 # Define sources to be compiled
-file(GLOB SOURCES "optimath/*.cpp")
+file(GLOB OPTIMATH_SOURCES "optimath/*.cpp")
+
+# Create static library
+add_library(optimath_static STATIC ${OPTIMATH_SOURCES})
+
+# Create shared library
+add_library(optimath_shared SHARED ${OPTIMATH_SOURCES})
 
 # Define the test executable
-add_executable(optimath ${SOURCES})
+file(GLOB TEST_SOURCES "tests/*.cpp")
+add_executable(optimath_tests ${TEST_SOURCES})
 
-# Link against Catch2
-target_link_libraries(optimath PRIVATE Catch2::Catch2WithMain)
+# Link the test executable against the static library and Catch2
+target_link_libraries(optimath_tests PRIVATE optimath_static Catch2::Catch2WithMain)

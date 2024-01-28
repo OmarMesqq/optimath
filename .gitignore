@@ -1,5 +1,6 @@
 Catch2
 build
+out/
 
 html
 latex
