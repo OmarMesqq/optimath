@@ -1,9 +1,6 @@
 #include <iostream>
 #include <cstring>
-#include "allocator/olloc.h"
-/*
-TODO: use memory allocation functions available in C instead of new/delete
-*/
+
 class OptiVector {
 public:
     OptiVector() : data_(nullptr), size_(0), capacity_(0) {}
