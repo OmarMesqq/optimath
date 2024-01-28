@@ -1,4 +1,4 @@
 #!/bin/sh
 
-rm -rf build
+find build -mindepth 1 -maxdepth 1 ! -name '_deps' -exec rm -rf {} +
 rm -r out
