@@ -5,7 +5,7 @@ project(optimath)
 add_subdirectory(Catch2)
 
 # Define sources to be compiled
-file(GLOB SOURCES "cpp/*.cpp")
+file(GLOB SOURCES "optimath/*.cpp")
 
 # Define the test executable
 add_executable(optimath ${SOURCES})
