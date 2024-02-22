@@ -7,7 +7,7 @@ make -j$(nproc)
 
 # Organize final compiled files
 cd .. 
-mkdir out
+mkdir -p out
 cp build/liboptimath_shared.so out/
 cp build/liboptimath_static.a out/
 cp build/optimath_tests out/
