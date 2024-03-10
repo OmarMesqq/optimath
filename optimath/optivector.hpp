@@ -1,67 +1,53 @@
-/**
- * @file optivector.hpp
- * @brief Defines the OptiVector class for dynamic array management.
- */
-
 #ifndef OPTIVECTOR_HPP
 #define OPTIVECTOR_HPP
 
 #include <cstddef>
 #include <stdexcept>
+#include <algorithm>
 
-/**
- * @class OptiVector
- * @brief Implements a dynamic array of integers.
- * 
- * OptiVector is a class that manages a dynamic array of integers,
- * allowing for basic operations like adding, accessing, and swapping elements.
- */
+template <typename T>
 class OptiVector {
+    T* data_;  // Pointer to the dynamically allocated array of integers.
+    size_t size_;  // Current number of elements in the vector.
+    size_t capacity_;  // Current capacity of the vector.
+
+    void resize(size_t new_capacity) {
+        T* new_data = new T[new_capacity];
+        for (size_t i = 0; i < size_; ++i) {
+            new_data[i] = data_[i]; // Use copy assignment of T
+        }
+        delete[] data_;
+        data_ = new_data;
+        capacity_ = new_capacity;
+    }
+
 public:
-    /**
-     * @brief Constructs an empty OptiVector.
-     */
-    OptiVector();
+    OptiVector() : data_(nullptr), size_(0), capacity_(0) {}
 
-    /**
-     * @brief Destructs the OptiVector, releasing allocated memory.
-     */
-    virtual ~OptiVector();
+    virtual ~OptiVector() {
+        delete[] data_;
+    }
 
-    /**
-     * @brief Adds a new value to the end of the vector.
-     * @param value The integer value to be added.
-     */
-    void push_back(int value);
+    void push_back(T value) {
+        if (size_ == capacity_) {
+            resize((capacity_ == 0) ? 1 : 2 * capacity_);
+        }
+        data_[size_++] = value;
+    }
 
-    /**
-     * @brief Accesses the element at a specified index in the vector.
-     * @param index Index of the element to access.
-     * @return The value at the specified index.
-     * @throw std::out_of_range If index is out of range.
-     */
-    int at(size_t index);
+    T at(size_t index) {
+        if (index >= size_) {
+            throw std::out_of_range("Index out of range");
+        };
+        return data_[index];
+    }
 
-    /**
-     * @brief Swaps the values of two elements in the vector.
-     * @param i The index of the first element.
-     * @param j The index of the second element.
-     * @throw std::out_of_range If either index is out of range.
-     */
-    void swap_elements(size_t i, size_t j);
-
-private:
-    void resize(size_t new_capacity);
-
-    int* data_;      ///< Pointer to the dynamically allocated array of integers.
-    size_t size_;    ///< Current number of elements in the vector.
-    size_t capacity_; ///< Current capacity of the vector.
+    void swap_elements(size_t i, size_t j) {
+        if (i >= size_ || j >= size_) {
+            throw std::out_of_range("Index out of range");
+        }
+        std::swap(data_[i], data_[j]);
+    }
 };
-
-extern "C" OptiVector* create_vector();
-extern "C" void push_back(OptiVector* vec, int value);
-extern "C" int at(OptiVector* vec, size_t index);
-extern "C" void swap_elements(OptiVector* vec, size_t i, size_t j);
-extern "C" void delete_vector(OptiVector* vec);
 
 #endif // OPTIVECTOR_HPP

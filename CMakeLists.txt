@@ -11,18 +11,12 @@ FetchContent_Declare(
 
 FetchContent_MakeAvailable(catch2)
 
-# Define sources to be compiled
-file(GLOB OPTIMATH_SOURCES "optimath/*.cpp")
+# Create the examples executable
+file(GLOB EXAMPLE_SOURCES "examples/*.cpp")
+add_executable(examples ${EXAMPLE_SOURCES})
 
-# Create static library
-add_library(optimath_static STATIC ${OPTIMATH_SOURCES})
-
-# Create shared library
-add_library(optimath_shared SHARED ${OPTIMATH_SOURCES})
-
-# Define the test executable
+# Create the test executable
 file(GLOB TEST_SOURCES "tests/*.cpp")
 add_executable(optimath_tests ${TEST_SOURCES})
+target_link_libraries(optimath_tests PRIVATE Catch2::Catch2WithMain) # Link it against Catch2
 
-# Link the test executable against the static library and Catch2
-target_link_libraries(optimath_tests PRIVATE optimath_static Catch2::Catch2WithMain)

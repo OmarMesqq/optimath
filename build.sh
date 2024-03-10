@@ -5,9 +5,7 @@ mkdir -p build && cd build
 cmake ..
 make -j$(nproc)
 
-# Organize final compiled files
 cd .. 
 mkdir -p out
-cp build/liboptimath_shared.so out/
-cp build/liboptimath_static.a out/
+cp build/examples out
 cp build/optimath_tests out/
